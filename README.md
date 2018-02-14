@@ -44,7 +44,9 @@ Than the script is run for the test:
 ### Conclusions
 
 Runing it on our data produced the following results:
-![alt text](https://github.com/YG15/Confidence_Acuraccy_test/blob/master/images/1st_results_14022018.png)
+
+
+![alt text](https://github.com/YG15/Confidence_Acuraccy_test/blob/master/images/1st_results_14022018.png  "Logo Title Text 1")
 
 As it can be seen from the data, we couldn't prove high correlation between the confidences level and the accuracy. I suspect that this is a byproduct of one of two things- the fact that almost all predictions are in confidence level 1, which make it prone to mistakes, and a short text, which doesn't allow us to quantify accurately the rest of the confidence levels.
 
