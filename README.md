@@ -27,8 +27,8 @@ The code does the following steps (not mentioning regular step such as library u
 First, it uploads 4 functions from the file `confidence_accuracy_functions.py` which will be later used in the script:
 1. `element_json_extractor` - recieves the transcript `json` file and can extract the 'word', 'confidence', 'type', 'from' or 'to' elements as a list. Can be used to extract the words and confidence level form the json file of the transcript.
 2. `text_levenshtein_distance` - is computing the Levenshtein distance (the minimal edit distance) between the two texts- in our case the predicted and true transcripts - recives two list to compare and return a comparison list.
-3. `accuracy_confidence_correlation` - is the main function of this scripts. It recieves two lists - a comparison list which was producted by the text_levenshtein_distance function, and a confidence_list which is a list of the confidence level of each word in the json transcript text (produced by the element_json_extractor function). It has also a optional parameter TH_min_num, which define what is the minimum number of occurances for a confidence level in the text in order to be included in the analysis (so we could remove low occurrences which can acts as outliers). The function return a data frame with two columns and rows in the nuber of words which had a total number of occurances greater than TH_min_num. The first column is confidence levels of the words and. The second column is the prediction succes and is binary, 1 for succssful prediction and o for failure prediction
-4.`html_displayer` - Display text as HTML and highlight in red low confidence words (if requested), recieves a words list, a confidence list and and two parameters TH_highligh_low which is a boolean that describe if to highlight low confidence level words and TH_low_conf which set the treshold to be considered "low confidence".
+3. `accuracy_confidence_correlation` - is the main function of this scripts. It recieves two lists - a comparison list which was producted by the text_levenshtein_distance function, and a confidence_list which is a list of the confidence level of each word in the json transcript text (produced by the element_json_extractor function). It has also a optional parameter TH_min_num, which define what is the minimum number of occurances for a confidence level in the text in order to be included in the analysis (so we could remove low occurrences which can acts as outliers). The function return a data frame with two columns and rows in the nuber of words which had a total number of occurances greater than TH_min_num. The first column is confidence levels of the words and. The second column is the prediction succes and is binary, 1 for succssful prediction and o for failure prediction.
+4. `html_displayer` - Display text as HTML and highlight in red low confidence words (if requested), recieves a words list, a confidence list and and two parameters TH_highligh_low which is a boolean that describe if to highlight low confidence level words and TH_low_conf which set the treshold to be considered "low confidence".
 
 Than the script is run for the test:
 1. Upload the data.
@@ -46,7 +46,7 @@ Than the script is run for the test:
 Runing it on our data produced the following results:
 
 
-![alt text](https://github.com/YG15/Confidence_Acuraccy_test/blob/master/images/1st_results_14022018.png  "Logo Title Text 1")
+![alt text](https://github.com/YG15/Confidence_Acuraccy_test/blob/master/images/Image2.png)
 
 As it can be seen from the data, we couldn't prove high correlation between the confidences level and the accuracy. I suspect that this is a byproduct of one of two things- the fact that almost all predictions are in confidence level 1, which make it prone to mistakes, and a short text, which doesn't allow us to quantify accurately the rest of the confidence levels.
 
