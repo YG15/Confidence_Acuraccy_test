@@ -77,7 +77,7 @@ def accuracy_confidence_correlation(compare_list, confidence_list, TH_min_num=0)
 
 # Display text as HTML that highlight in red low confidence words V1
 
-def html_displayer(words_list,confidence_list,TH_highligh_low,TH_low_conf):
+def html_displayer(words_list,confidence_list,TH_highligh_low=True,TH_low_conf=0.9):
     html_string=''
     for lines in enumerate(words_list):
         if TH_highligh_low==False:
