@@ -13,7 +13,7 @@ __Script Details_:_
  
 ### Description
 
-The "Confidence Acuraccy test" scripts is meant to test the hypothesis that automated algorithm confidence in their prediction is correlated which the accuracy of their prediction. That is to say, We assume that the more "sure" the algorithm is in it's answer, the less likely it is to be mistaken.
+The "Confidence Acuraccy test" scripts are meant to test the hypothesis that automated algorithm confidence in their prediction is correlated which the accuracy of their prediction. That is to say, We assume that the more "sure" the algorithm is in it's answer, the less likely it is to be mistaken.
 
 In order to test this assumption we confornt an audion-to-text ML algorithm which give a conversation transcript based on its recording, with the actual transcript of the conversation. The algorithm produce, alongside the word identification, also a confidence level for each word it predict, and this allows us to test our hypothesis.
 
@@ -24,11 +24,11 @@ The main analysis is based on calculating the proportion of successful predictio
 ***
 The code does the following steps (not mentioning regular step such as library uploading, parameters setting  and etc.):
 
-First I create 3 function for later use:
+First, it uploads 4 functions from the file `confidence_accuracy_functions.py` which will be later used in the script:
 1. `element_json_extractor` - recieves the transcript `json` file and can extract the 'word', 'confidence', 'type', 'from' or 'to' elements as a list. Can be used to extract the words and confidence level form the json file of the transcript.
 2. `text_levenshtein_distance` - is computing the Levenshtein distance (the minimal edit distance) between the two texts- in our case the predicted and true transcripts - recives two list to compare and return a comparison list.
-3. `accuracy_confidence_correlation` - is the main function of this scripts. It recieves two lists - a comparison list whichwas producted by the text_levenshtein_distance function, and a confidence_list which is a list of the confidence level of each word in the json transcript text (produced by the element_json_extractor function). It has also a optional parameter TH_min_num, which define what is the minimum number of occurances for a confidence level in the text in order to be included in the analysis (so we could remove low occurrences which can acts as outliers). The function return a data frame with two columns; the first column is confidence levels and contain only rows for which the occurance is greater than TH_min_num, and a second column with a ratio of the true prediction out of all the prediction for each specific confidence level.
-
+3. `accuracy_confidence_correlation` - is the main function of this scripts. It recieves two lists - a comparison list which was producted by the text_levenshtein_distance function, and a confidence_list which is a list of the confidence level of each word in the json transcript text (produced by the element_json_extractor function). It has also a optional parameter TH_min_num, which define what is the minimum number of occurances for a confidence level in the text in order to be included in the analysis (so we could remove low occurrences which can acts as outliers). The function return a data frame with two columns and rows in the nuber of words which had a total number of occurances greater than TH_min_num. The first column is confidence levels of the words and. The second column is the prediction succes and is binary, 1 for succssful prediction and o for failure prediction
+4.`html_displayer` - Display text as HTML and highlight in red low confidence words (if requested), recieves a words list, a confidence list and and two parameters TH_highligh_low which is a boolean that describe if to highlight low confidence level words and TH_low_conf which set the treshold to be considered "low confidence".
 
 Than the script is run for the test:
 1. Upload the data.
@@ -37,7 +37,7 @@ Than the script is run for the test:
 4. Computing the Levenshtein distance of the words list and the true data using `text_levenshtein_distance`.
 5. Create a data frame of the results using `accuracy_confidence_correlation`.
 6. Visualization of the results
-7. Write transcript word list to a `HTML` file, in which low confidennce words are highlighted in red.
+7. Display the word list as an `HTML` using `html_displayer`, in which low confidennce words are highlighted in red.
 
 
 ***
